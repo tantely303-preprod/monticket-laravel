@@ -25,7 +25,12 @@ RUN composer install --no-dev --optimize-autoloader
 RUN npm install
 RUN npm run build
 
-# Generate Laravel APP_KEY
+# --- Gestion de l'APP_KEY ---
+
+# Option 1 : Copier .env.example si .env n'existe pas
+RUN cp .env.example .env || true
+
+# Générer Laravel APP_KEY
 RUN php artisan key:generate --force
 
 # Render exige le port 10000
