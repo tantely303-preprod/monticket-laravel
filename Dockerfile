@@ -33,14 +33,9 @@ RUN cp .env.example .env || true
 # Générer Laravel APP_KEY
 RUN php artisan key:generate --force
 
-# Exécuter les migrations automatiquement lors du déploiement
-RUN php artisan migrate --force
-
 # Render exige le port 10000
 EXPOSE 10000
 
 # Start Laravel server sur le port Render obligatoire
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=10000"]
-
-
 
